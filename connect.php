@@ -8,6 +8,6 @@ $coon=null;
  $conn = new mysqli($server,$username,$password,$database);
  if($error=mysqli_connect_error())
  {
-    die("link failed".$error);
+    die("连接失败".$error);
  }
 ?>

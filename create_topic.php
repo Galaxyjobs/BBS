@@ -1,9 +1,9 @@
 <?php
     include "header.php";
     include "connect.php";
-    if($_SESSION['signed_in']==false)
+    if(!isset($_SESSION['signed_in'])||$_SESSION['signed_in']==false)
     {
-        echo 'Sorry, you have to be <a href="/forum/signin.php">signed in</a> to create a topic.';
+        echo '对不起，你必须先 <a href="signin.php">登录</a> 才能创建话题';
     }
     else
     {
@@ -18,7 +18,7 @@
             $result=mysqli_query($conn,$sql);
             if(!$result)
             {
-                echo 'Error while selecting from database. Please try again later.';
+                echo '发生了一个错误，请稍后再试';
             }
             else
             {
@@ -36,8 +36,8 @@
                 else
                 {
                     echo '<form method="post" action="">
-                        Subject:<input type="text" name="topic_subject">
-                        Category:<select name="topic_cat">
+                        主题:<input type="text" name="topic_subject">
+                        目录:<select name="topic_cat">
                     ';
                     while($row=mysqli_fetch_array($result))
                     {
@@ -57,7 +57,7 @@
             $result=mysqli_query($conn,$sql);
             if(!$result)
             {
-                echo "An error occured while creating your topic. Please try again later.";
+                echo "创建主题时出现了一个错误，请稍后再试";
             }
             else
             {
@@ -74,7 +74,7 @@
             $result=mysqli_query($conn,$sql);
             if(!$result)
             {
-                echo 'An error occured while inserting your data. Please try again later.' . mysqli_error($conn);
+                echo '提交数据时发现了一个错误，请稍后再试' . mysqli_error($conn);
                 $sql="ROLLBACK";
                 $result=mysqli_query($conn,$sql);
             }
@@ -94,7 +94,7 @@
                 $result=mysqli_query($conn,$sql);
                 if(!$result)
                 {
-                    echo 'An error occured while inserting your post. Please try again later.' . mysql_error();
+                    echo '你的提交出现了一个错误，请稍后再试' . mysql_error();
                     $sql="Rollback";
                     mysqli_query($conn,$sql);
                 }
@@ -102,7 +102,7 @@
                 {
                     $sql="COMMIT;";
                     mysqli_query($conn,$sql);
-                    echo 'You have successfully created <a href="topic.php?id='. $topicid . '">your new topic</a>.';
+                    echo '你已成功创建了 <a href="topic.php?id='. $topicid . '">新话题</a>.';
                 }
             }
             }

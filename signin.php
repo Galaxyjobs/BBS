@@ -3,7 +3,7 @@
     include "connect.php";
     if(isset($_SESSION['signed_in'])&&$_SESSION['signed_in'])
     {
-        echo 'You are already signed in, you can <a href="signout.php">sign out</a> if you want.';
+        echo '你已成功登录, 如果你想的话，你可以 <a href="signout.php">登出</a> ';
     }
     else
     {
@@ -11,9 +11,9 @@
         {
             echo '
             <form method="post" action="">
-            Username: <input type="text" name="user_name" />
-            Password: <input type="password" name="user_pass">
-            <input type="submit" value="Sign in" />
+            用户名: <input type="text" name="user_name" />
+            密码: <input type="password" name="user_pass">
+            <input type="submit" value="登录" />
             </form>
             ';
             $_POST['user_name']=null;
@@ -24,16 +24,16 @@
             $errors = array();
             if(empty($_POST['user_name']))
             {
-                $errors[]="The username field must not be empty.";
+                $errors[]="用户名没有填写";
             }
             if(empty($_POST['user_pass']))
             {
-                $errors[]="The password field must not be empty.";
+                $errors[]="密码没有填写";
             }
         
         if(!empty($errors))
         {
-            echo "Uh-oh.. a couple of fields are not filled in correctly.";
+            echo "噢。。可能出了点错误";
             echo '<ul>';
             foreach ($errors as $key=>$value)
             {
@@ -52,7 +52,7 @@
             $rows=$result->num_rows;
             if(!$rows)
             {
-                echo 'Something went wrong while signing in. Please try again later.';
+                echo '登录时发生了点错误，请稍后再试';
             }
             else
             {
@@ -63,7 +63,7 @@
                     $_SESSION['user_name']  = $row['user_name'];
                     $_SESSION['user_level'] = $row['user_level'];
                 }
-                echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>.';
+                echo '欢迎, ' . $_SESSION['user_name'] . '. <a href="index.php">前往主页查看</a>.';
             }
         }}
     }

@@ -12,19 +12,19 @@
             $result=mysqli_query($conn,$sql);
             if(!$result)
             {
-                echo 'The category could not be displayed, please try again later.' . mysql_error();
+                echo '目录目前还无法显示，请稍后重试' . mysql_error();
             }
             else
             {
                 if($result->num_rows==0)
                 {
-                    echo 'This category does not exist.';
+                    echo '目录还没有被创建';
                 }
                 else
                 {
                     if($row = mysqli_fetch_assoc($result))
                     {
-                        echo '<h2>Topics in ′' . $row['cat_name'] . '′ category</h2>';
+                        echo '<h2>目录′' . $row['cat_name'] . '′下的话题 </h2>';
                     }
                     $sql = "SELECT  
                     topic_id,
@@ -38,20 +38,20 @@
                     $result=mysqli_query($conn,$sql);
                     if(!$result)
                     {
-                        echo 'The topics could not be displayed, please try again later.';
+                        echo '话题还不能显示，请稍后再试';
                     }
                     else
                     {
                         if($result->num_rows==0)
                         {
-                            echo "There are no topics in this category yet.";
+                            echo "这个目录下还没有任何话题";
                         }
                         else
                         {
                             echo '<table border="1">
                                     <tr>
-                                    <th>Topic</th>
-                                    <th>Created at</th>
+                                    <th>话题</th>
+                                    <th>创建于</th>
                                 </tr>';
                                 while($row = mysqli_fetch_assoc($result))
                                 {               

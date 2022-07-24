@@ -3,19 +3,19 @@
     include "connect.php";
     if(isset($_SESSION['signed_in'])&&$_SESSION['signed_in'])
     {
-        echo 'You are already signed in, you can <a href="signout.php">sign out</a> if you want.';
+        echo '你已经登录, 如果你愿意，可以 <a href="signout.php">退出</a> ';
     }
     else{
-    echo "<h3>sign up</h3>";
+    echo "<h3>注册</h3>";
     if($_SERVER["REQUEST_METHOD"]!="POST")
     {
         echo '
             <form method="post" action="">
-            Username:<input type="text" name="user_name">
-            Password: <input type="password" name="user_pass">
-            Password again: <input type="password" name="user_pass_check">
-            E-mail: <input type="email" name="user_email">
-            <input type="submit" value="Add category" />
+            用户名:<input type="text" name="user_name">
+            密码: <input type="password" name="user_pass">
+            再次输入密码: <input type="password" name="user_pass_check">
+            邮箱: <input type="email" name="user_email">
+            <input type="submit" value="注册" />
             </form>
         ';
     }
@@ -26,32 +26,32 @@
         {
             if(!ctype_alnum($_POST['user_name']))
             {
-                $errors[]="The username can only contain letters and digits.";
+                $errors[]="用户名只能字母和数字";
             }
             if(strlen($_POST['user_name'])>30)
             {
-                $errors[]="The username cannot be longer than 30 characters.";
+                $errors[]="用户名不能大于30个字符";
             }
         }
         else
         {
-            $errors[]="The username field must not be empty.";
+            $errors[]="用户名不能为空";
         }
         if(!empty($_POST['user_pass']))
         {
             if($_POST['user_pass']!=$_POST['user_pass_check'])
             {
-                $errors[]="The two passwords did not match.";
+                $errors[]="两次输入密码不一致";
             }
 
         }
         else
         {
-            $errors[]="The password field cannot be empty.";
+            $errors[]="密码不能为空.";
         }
         if(!empty($errors))
         {
-            echo 'Uh-oh.. a couple of fields are not filled in correctly..';
+            echo '噢，发生了点错误';
             echo '<ul>';
             foreach($errors as $key=>$value)
             {
@@ -71,11 +71,11 @@
             $result=mysqli_query($conn,$sql);
             if(!$result)
             {
-                echo 'Something went wrong while registering. Please try again later.';
+                echo '注册时发生了点错误，请稍后再试';
             }
             else
             {
-                echo 'Successfully registered! You can now <a href="signin.php"> sign in </a>and post!';
+                echo '成功注册，你可以 <a href="signin.php"> 登录 </a>然后发言';
             }
         }
     }

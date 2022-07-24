@@ -11,7 +11,7 @@
     $result=mysqli_query($conn,$sql);
     if(!$result)
     {
-        echo "there was an unexpected error,please try again later.";
+        echo "有一个预料之外的错误，请稍后再试";
     }
     else
     {
@@ -39,7 +39,7 @@
         $result=mysqli_query($conn,$sql);
         if(!$result)
         {
-            echo "An unexpected error,please try again later.";
+            echo "有一个预料之外的错误，请稍后再试";
         }
         else
         {
@@ -56,7 +56,7 @@
         }
         if(!isset($_SESSION['signed_in'])||$_SESSION['signed_in']==false)
         {
-            echo "If you want to reply, you must ".'<a href="signin.php">sign in </a>'."first.";
+            echo "如果你想回复，请先 ".'<a href="signin.php">登录 </a>';
         }
         else
         {
@@ -65,7 +65,7 @@
                 echo '<h3>Reply:</h3><br>';
                 echo '<form method="POST" action="">';
                 echo '<textarea name="reply_content"></textarea>';
-                echo '<input type="submit" value="Submit Reply">';
+                echo '<input type="submit" value="提交回复">';
                 echo '</form>';
             }
             else    
@@ -84,11 +84,11 @@
                 $result=mysqli_query($conn,$sql);
                 if(!$result)
                 {
-                    echo 'Your reply has not been saved, please try again later.';
+                    echo '你的回复提交时发生了错误，请稍后再试';
                 }
                 else
                 {
-                    echo 'Your reply has been saved, check out <a href="topic.php?id=' . htmlentities($_GET['id']) . '">the topic</a>.';
+                    echo '你的回复已经被保存，前往 <a href="topic.php?id=' . htmlentities($_GET['id']) . '">话题</a>查看.';
                 }
             }
         }    

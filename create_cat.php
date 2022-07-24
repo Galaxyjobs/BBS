@@ -5,7 +5,7 @@
     {
         ?>
         <script>
-            alert("You don't have right to add a category,please contact the admin.");
+            alert("你没有权限创建目录，请联系管理员");
             window.location.href="index.php";
         </script>
         <?php
@@ -17,9 +17,9 @@
 {
     //the form hasn't been posted yet, display it
     echo '<form method="post" action="">
-        Category name: <input type="text" name="cat_name" />
-        Category description: <br><textarea name="cat_description" /></textarea>
-        <input type="submit" value="Add category" />
+        目录名: <input type="text" name="cat_name" />
+        描述: <br><textarea name="cat_description" /></textarea>
+        <input type="submit" value="添加目录" />
      </form>';
 }
 else{
@@ -35,7 +35,7 @@ else{
     }
     else
     {
-        echo 'New category successfully added.';
+        echo '新目录已经被添加成功';
     }
 }
     }

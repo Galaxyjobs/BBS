@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SDU forum</title>
+    <title>Teambook</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<h1>SDU forum</h1>
+<h1>Teambook</h1>
     <div id="wrapper">
     <div id="menu">
-        <a class="item" href="index.php">Home</a> -
-        <a class="item" href="create_topic.php">Create a topic</a> -
-        <a class="item" href="create_cat.php">Create a category</a>
+        <a class="item" href="index.php">主页</a> -
+        <a class="item" href="create_topic.php">创建话题</a> -
+        <a class="item" href="create_cat.php">创建目录</a>
          
         <!-- <div id="userbar"> -->
         <?php
@@ -18,11 +18,11 @@
             echo '<div id="userbar">';
             if(isset($_SESSION['signed_in'])&&$_SESSION['signed_in']==true)
             {
-                echo 'Hello!'.$_SESSION['user_name'].'.Not you?<a href="signout.php">Sign out</a>';
+                echo '你好'.$_SESSION['user_name'].'.不是你吗?<a href="signout.php">退出</a>';
             }
             else
             {
-                echo '<a href="signin.php">Sign in</a> or <a href="signup.php">Create an account</a>';
+                echo '<a href="signin.php">登录</a> 或者 <a href="signup.php">创建账号</a>';
             }
             echo '</div>';       
         ?>
