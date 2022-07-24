@@ -120,3 +120,8 @@ textarea {
  input {
      display: block; 
  }
+.topic_th{
+    background-color: #B40E1F;
+    color: #F0F0F0;
+    text-align: center;
+}

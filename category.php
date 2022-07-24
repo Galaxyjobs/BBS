@@ -48,7 +48,22 @@
                         }
                         else
                         {
-
+                            echo '<table border="1">
+                                    <tr>
+                                    <th>Topic</th>
+                                    <th>Created at</th>
+                                </tr>';
+                                while($row = mysqli_fetch_assoc($result))
+                                {               
+                                    echo '<tr>';
+                                    echo '<td class="leftpart">';
+                                    echo '<h3><a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+                                    echo '</td>';
+                                    echo '<td class="rightpart">';
+                                    echo date('d-m-Y', strtotime($row['topic_date']));
+                                    echo '</td>';
+                                    echo '</tr>';
+                } 
                         }
                     }
                 }
