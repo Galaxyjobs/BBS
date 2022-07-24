@@ -26,11 +26,11 @@
                 {
                     if($_SESSION['user_level']==1)
                     {
-                        echo "You have not created categories yet.";
+                        echo "你还没有创建任何目录";
                     }
                     else
                     {
-                        echo 'Before you can post a topic, you must wait for an admin to create some categories.';
+                        echo '在你创建话题之前，必须要等待管理员创建目录';
                     }
                 }
                 else

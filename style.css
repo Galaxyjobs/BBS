@@ -125,3 +125,9 @@ textarea {
     color: #F0F0F0;
     text-align: center;
 }
+.delete{
+    float:right;
+}
+.alter{
+    float:right;
+}

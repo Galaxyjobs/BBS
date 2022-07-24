@@ -61,6 +61,10 @@
                                     echo '</td>';
                                     echo '<td class="rightpart">';
                                     echo date('d-m-Y', strtotime($row['topic_date']));
+                                    if(isset($_SESSION['user_level'])&&$_SESSION['user_level']==1)
+                                    {
+                                         echo '<a class="delete" href="delete_topic.php?id='.$row['topic_id'].'">删除</a>';
+                                    }
                                     echo '</td>';
                                     echo '</tr>';
                 } 

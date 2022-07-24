@@ -29,6 +29,7 @@
             posts.post_content,
             posts.post_date,
             posts.post_by,
+            posts.post_id,
             users.user_id,
             users.user_name
             from posts
@@ -48,9 +49,15 @@
                 echo '
                      <tr>
                         <td class="rightpart">'.$row['user_name'].'.<br>'.$row['post_date'].'</td>
-                        <td class="leftpart">'.$row['post_content'].'</td>
-                     </tr>
+                        <td class="leftpart">'.$row['post_content'].'
                 ';
+                if(isset($_SESSION['user_id'])&&$_SESSION['user_id']==$row['post_by'])
+                {
+                    echo '<a class="delete" href="delete_post.php?id='.$row['post_id'].'">删除</a>';
+                    echo '<a class="alter" href="alter_post.php?id='.$row['post_id'].'">修改</a>';
+                }
+                echo '</td>';
+                echo '</tr>';
             }
             echo '</table>';
         }
