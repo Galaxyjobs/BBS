@@ -18,7 +18,7 @@
             echo '<div id="userbar">';
             if(isset($_SESSION['signed_in'])&&$_SESSION['signed_in']==true)
             {
-                echo '你好'.$_SESSION['user_name'].'.不是你吗?<a href="signout.php">退出</a>';
+                echo '你好'.$_SESSION['user_name'].'.<a href="signout.php">退出</a>';
             }
             else
             {
