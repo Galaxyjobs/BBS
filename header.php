@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Teambook</title>
+    <title>forum</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<h1>Teambook</h1>
+<h1>forum</h1>
     <div id="wrapper">
     <div id="menu">
         <a class="item" href="index.php">主页</a> -
