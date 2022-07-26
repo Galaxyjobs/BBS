@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="v_container" style="width: 200px;height: 50px;"><canvas id="canvas" width="200" height="50"></canvas></div>
+    <input type="text"
+           maxlength="4"
+           id="code_input"
+           onkeyup="value=value.replace(/[^\d]/g,'')"//输入时校验       
+           onblur="value=value.replace(/[^\d]/g,'')"//失去焦点时校验
+           placeholder="请输入验证码"><button id="my_button">验证</button>
+    <script>
+        const canvas=document.getElementById("canvas");
+        let img=document.getElementById("canvas");
+        let btn=document.getElementById("my_button");
+        const code_input=document.getElementById('code_input');
+        const ctx=canvas.getContext("2d"); 
+        const codeRef="1234567890";
+        let width= canvas.getAttribute('width');
+        let height= canvas.getAttribute('height');
+        window.onload=changeVerifyCode;
+        img.addEventListener('click',changeVerifyCode);
+        btn.addEventListener('click',verifyCode);
+        var sumOfCode=0;
+        function randomNum(minNum,maxNum){
+            return Math.floor(Math.random()*(maxNum-minNum+1))+minNum;
+        }
+        function randomColor(minNum,maxNum)
+        {
+            return `rgba(${randomNum(minNum,maxNum)},${randomNum(minNum,maxNum)},${randomNum(minNum,maxNum)},0.6)`;
+        }
+        function changeVerifyCode()
+        {
+            sumOfCode=0;//record numbers;
+            for(let i=4;i>0;i--)
+            {
+                const num=randomNum(0,codeRef.length-1);
+                const x=(width/5)*i+randomNum(-10,10);
+                const y=randomNum(height-15,height-5);
+                const r=randomNum(-30,30)*Math.PI/180;
+                ctx.translate(x,y);
+                ctx.rotate(r);
+                ctx.fillStyle=`rgba${randomNum(10,50)},${randomNum(10,50)},${randomNum(10,50)},0.6)`;
+                ctx.font=`${randomNum(30,40)}px Arial`;
+                ctx.shadowOffsetX = 3;
+                ctx.shadowOffsetY = 3;
+                ctx.shadowBlur = 3;
+                ctx.shadowColor = "rgba(0,0,0,0.5)";
+                ctx.fillText(codeRef[num].toString(),0,0);
+                sumOfCode=parseInt(sumOfCode)+parseInt(codeRef[num]);
+                ctx.rotate(-1*r);
+                ctx.translate(-1*x,-1*y);
+            }
+            ctx.beginPath();
+            for(let i=0;i<randomNum(4,6);i++)
+            {
+                startX=randomNum(0,width/2);
+                startY=randomNum(0,height/2);
+                endX=randomNum(width/2,width);
+                endY=randomNum(height/2,height);
+                ctx.strokeStyle = `rgba(${randomNum(100,130)},${randomNum(100,130)},${randomNum(100,130)},${randomNum(0.3,0.9)})`;
+                ctx.moveTo(startX,startY);
+                ctx.lineTo(endX,endY);
+                ctx.stroke();
+            }
+            for(let i=0;i<randomNum(10,20);i++)
+            {
+                x=randomNum(0,width);
+                y=randomNum(0,height);
+                ctx.fillStyle=randomColor(100,130);
+                ctx.moveTo(x,y);
+                ctx.arc(x,y,1,0,Math.PI);
+                ctx.fill();
+            }
+        }
+        function verifyCode()
+        {
+            var n=code_input.value;
+            var sum=0;
+            while(n>0)
+            {
+                a=n%10;
+                n=Math.floor(n/10);
+                sum+=a;
+            }
+            if(parseInt(sum)==parseInt(sumOfCode))
+            {
+                alert("nice");
+            }
+            else
+            {
+                alert("wrong");
+            }
+        }
+    </script>
+</body>
+</html>
